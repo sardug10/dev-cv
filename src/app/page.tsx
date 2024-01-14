@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { CommandMenu } from "@/components/command-menu";
 import { Metadata } from "next";
 import { Section } from "@/components/ui/section";
-import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { GlobeIcon, MailIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
-      <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
+    <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-8 md:p-12">
+      <section className="mx-auto w-full max-w-4xl space-y-8 bg-white print:space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex-1 space-y-1.5">
             <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
@@ -44,18 +44,6 @@ export default function Page() {
                 >
                   <a href={`mailto:${RESUME_DATA.contact.email}`}>
                     <MailIcon className="size-4" />
-                  </a>
-                </Button>
-              ) : null}
-              {RESUME_DATA.contact.tel ? (
-                <Button
-                  className="size-8"
-                  variant="outline"
-                  size="icon"
-                  asChild
-                >
-                  <a href={`tel:${RESUME_DATA.contact.tel}`}>
-                    <PhoneIcon className="size-4" />
                   </a>
                 </Button>
               ) : null}
@@ -131,9 +119,11 @@ export default function Page() {
                     {work.title}
                   </h4>
                 </CardHeader>
-                <CardContent className="mt-2 text-xs">
-                  {work.description}
-                </CardContent>
+                {work.description.map((bulletPoint, idx) => (
+                  <CardContent className="mt-2 text-xs" key={idx}>
+                    {bulletPoint}
+                  </CardContent>
+                ))}
               </Card>
             );
           })}
@@ -154,6 +144,9 @@ export default function Page() {
                   </div>
                 </CardHeader>
                 <CardContent className="mt-2">{education.degree}</CardContent>
+                <CardContent className="mt-2 font-semibold">
+                  CGPA {education.cgpa}
+                </CardContent>
               </Card>
             );
           })}
@@ -168,16 +161,16 @@ export default function Page() {
         </Section>
 
         <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="text-xl font-bold">Projects</h2>
-          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
-            {RESUME_DATA.projects.map((project) => {
+          <h2 className="text-xl font-bold">Blogs/Publications</h2>
+          <div className="-mx-3 grid grid-cols-1 gap-2 print:grid-cols-2 print:gap-2 md:grid-cols-2 lg:grid-cols-2">
+            {RESUME_DATA.articles.map((article) => {
               return (
                 <ProjectCard
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.techStack}
-                  link={"link" in project ? project.link.href : undefined}
+                  key={article.title}
+                  title={article.title}
+                  description={article.description}
+                  tags={article.techStack}
+                  link={"link" in article ? article.link.href : undefined}
                 />
               );
             })}
