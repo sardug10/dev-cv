@@ -1,3 +1,4 @@
+import slugify from "@/app/utils/slugify";
 import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 
 export const RESUME_DATA = {
@@ -77,6 +78,7 @@ export const RESUME_DATA = {
     {
       title: "How to Implement Logging with Pino-logger",
       techStack: ["Node.js", "Logging"],
+      slug: "",
       description:
         "It covers the fundamentals of logging in Node.js applications, focusing on using Pino-logger. The article walks through setting up a project, installing Pino, creating a logger service, configuring logs, and storing logs in a file. It's aimed at developers with some Node.js experience and provides practical steps for implementing efficient logging in their applications.      ",
       link: {
@@ -87,6 +89,7 @@ export const RESUME_DATA = {
     {
       title: "Build a custom sticky navbar with CSS",
       techStack: ["SCSS", "Navbar", "Media-queries"],
+      slug: "",
       description:
         "It guides readers on creating a responsive, sticky navigation bar using HTML, SCSS, and minimal JavaScript. It covers various aspects such as styling for different screen sizes, incorporating a hamburger menu for mobile views, and differences between sticky and fixed navbar positions. The post includes detailed code snippets and explanations, making it a practical resource for web developers looking to enhance their site navigation",
       link: {
@@ -97,6 +100,19 @@ export const RESUME_DATA = {
     {
       title: "How Node.js works behind the scenes?",
       techStack: ["Node.js", "Event loop"],
+      slug: "",
+      description:
+        "An article giving you insights into How Node.js works behind the scenes in a very simple manner.",
+      link: {
+        label:
+          "https://www.geeksforgeeks.org/how-node-js-works-behind-the-scene/",
+        href: "https://www.geeksforgeeks.org/how-node-js-works-behind-the-scene/",
+      },
+    },
+    {
+      title: "Uploading files using Multer in a Node.js application",
+      techStack: ["Node.js", "Multer", "File upload"],
+      slug: slugify("Uploading files using Multer in a Node.js application"),
       description:
         "An article giving you insights into How Node.js works behind the scenes in a very simple manner.",
       link: {

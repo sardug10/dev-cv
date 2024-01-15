@@ -7,7 +7,7 @@ import { Section } from "@/components/ui/section";
 import { GlobeIcon, MailIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
-import { ProjectCard } from "@/components/project-card";
+import { PublicationsCard } from "@/components/publications-card";
 
 export const metadata: Metadata = {
   title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
@@ -165,12 +165,17 @@ export default function Page() {
           <div className="-mx-3 grid grid-cols-1 gap-2 print:grid-cols-2 print:gap-2 md:grid-cols-2 lg:grid-cols-2">
             {RESUME_DATA.articles.map((article) => {
               return (
-                <ProjectCard
+                <PublicationsCard
                   key={article.title}
                   title={article.title}
                   description={article.description}
                   tags={article.techStack}
-                  link={"link" in article ? article.link.href : undefined}
+                  link={
+                    !article.slug
+                      ? article.link.href
+                      : `/articles/${article.slug}`
+                  }
+                  isMyBlog={article.slug ? true : false}
                 />
               );
             })}
