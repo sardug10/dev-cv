@@ -12,14 +12,14 @@ export default async function Article({
 }) {
   const filename = "./public/assets/" + slug + "/index.md";
   const file = await readFile(filename, "utf8");
-  let postComponents = {};
-  try {
-    postComponents = await import("../../public/" + slug + "/components.js");
-  } catch (e) {
-    if (!e) {
-      throw e;
-    }
-  }
+  // let postComponents = {};
+  // try {
+  //   postComponents = await import("./public/" + slug + "/components.js");
+  // } catch (e) {
+  //   if (!e) {
+  //     throw e;
+  //   }
+  // }
   const { content, data } = matter(file);
   return (
     <article>
@@ -63,24 +63,4 @@ export default async function Article({
       </div>
     </article>
   );
-}
-
-export async function generateStaticParams() {
-  const entries = await readdir("./public/assets/", { withFileTypes: true });
-  const dirs = entries
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name);
-  return dirs.map((dir) => ({ slug: dir }));
-}
-
-export async function generateMetadata({ params }) {
-  const file = await readFile(
-    "./public/assets/" + params.slug + "/index.md",
-    "utf8",
-  );
-  let { data } = matter(file);
-  return {
-    title: data.title + " — overreacted",
-    description: data.spoiler,
-  };
 }
