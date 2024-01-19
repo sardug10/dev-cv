@@ -34,6 +34,7 @@
     "rehype-pretty-code": "^0.12.5",
     "remark-gfm": "^4.0.0",
     "remark-smartypants": "^2.1.0",
+    "shiki-themes": "^0.2.7",
     "shikiji": "^0.10.0-beta.9",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
