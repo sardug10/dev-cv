@@ -1,9 +1,11 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkSmartpants from "remark-smartypants";
 import rehypePrettyCode from "rehype-pretty-code";
-import { readdir, readFile } from "fs/promises";
+import { readFile } from "fs/promises";
 import overnight from "overnight/themes/Overnight-Slumber.json";
 import matter from "gray-matter";
+import "./markdown.css";
+import githubLight from "shiki-themes/data/github-light.json";
 
 export default async function Article({
   params: { slug },
@@ -52,7 +54,7 @@ export default async function Article({
                 [
                   rehypePrettyCode as any,
                   {
-                    theme: overnight,
+                    theme: githubLight,
                   },
                 ],
               ],
