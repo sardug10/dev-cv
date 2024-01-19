@@ -1,3 +1,8 @@
+---
+title: 'Uploading Files Using Multer in a Node.js Application'
+date: '2021-01-18'
+---
+
 Whenever we submit a form on the client-side of any website, all the form data goes to the server-side. Usually, form-data gets encoded before we submit it to the server. We can do this by specifying the enctype attribute in the `<form>` tag in HTML. If we don't specify it, form-data gets encoded with the default type.
 <br></br>
 

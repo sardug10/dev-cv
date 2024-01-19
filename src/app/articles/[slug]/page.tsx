@@ -1,36 +1,86 @@
-import { RESUME_DATA } from "@/data/resume-data";
-import RemoteMdxPage from "@/components/MarkdownRenderer";
-import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkSmartpants from "remark-smartypants";
+import rehypePrettyCode from "rehype-pretty-code";
+import { readdir, readFile } from "fs/promises";
+import overnight from "overnight/themes/Overnight-Slumber.json";
+import matter from "gray-matter";
 
-async function getArticleFileContent(articleId: string) {
-  const url = `http://localhost:3000/assets/${articleId}`;
-  return fetch(url, { cache: "no-store" })
-    .then((res) => res.text())
-    .then(async (text) => {
-      const mdx = await serialize(text);
-      return mdx;
-    })
-    .catch(async (e) => {
-      console.log("error", e);
-      return await serialize("");
-    });
-}
-
-async function Article({ params: { slug } }: { params: { slug: string } }) {
-  const article = RESUME_DATA.articles.find((item) => item.slug == slug);
-
-  const articleMdx: MDXRemoteSerializeResult =
-    await getArticleFileContent(slug);
-
+export default async function Article({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
+  const filename = "./public/assets/" + slug + "/index.md";
+  const file = await readFile(filename, "utf8");
+  let postComponents = {};
+  try {
+    postComponents = await import("../../public/" + slug + "/components.js");
+  } catch (e) {
+    if (!e) {
+      throw e;
+    }
+  }
+  const { content, data } = matter(file);
   return (
-    <div className="items-center p-2 text-left">
-      <h1 className="text-2xl font-bold">{article?.title}</h1>
-      <div className="mt-4">
-        <RemoteMdxPage mdxContent={articleMdx} />
+    <article>
+      <h1
+        className={[
+          "text-[40px] font-black leading-[44px] text-[--title]",
+        ].join(" ")}
+      >
+        {data.title}
+      </h1>
+      <p className="mt-2 text-[13px] text-gray-700 dark:text-gray-300">
+        {new Date(data.date).toLocaleDateString("en", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })}
+      </p>
+      <div className="markdown mt-10">
+        <MDXRemote
+          source={content}
+          // components={{
+          //   a: Link,
+          //   ...postComponents,
+          // }}
+          options={{
+            mdxOptions: {
+              useDynamicImport: true,
+              remarkPlugins: [remarkSmartpants as any],
+              rehypePlugins: [
+                [
+                  rehypePrettyCode as any,
+                  {
+                    theme: overnight,
+                  },
+                ],
+              ],
+            },
+          }}
+        />
+        <hr />
       </div>
-    </div>
+    </article>
   );
 }
 
-export default Article;
+export async function generateStaticParams() {
+  const entries = await readdir("./public/assets/", { withFileTypes: true });
+  const dirs = entries
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name);
+  return dirs.map((dir) => ({ slug: dir }));
+}
+
+export async function generateMetadata({ params }) {
+  const file = await readFile(
+    "./public/assets/" + params.slug + "/index.md",
+    "utf8",
+  );
+  let { data } = matter(file);
+  return {
+    title: data.title + " — overreacted",
+    description: data.spoiler,
+  };
+}
