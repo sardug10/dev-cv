@@ -25,11 +25,7 @@ export default async function Article({
   const { content, data } = matter(file);
   return (
     <article>
-      <h1
-        className={[
-          "text-[40px] font-black leading-[44px] text-[--title]",
-        ].join(" ")}
-      >
+      <h1 className="text-[40px] font-semibold leading-[57.5px]">
         {data.title}
       </h1>
       <p className="mt-2 text-[13px] text-gray-700 dark:text-gray-300">
@@ -39,7 +35,7 @@ export default async function Article({
           year: "numeric",
         })}
       </p>
-      <div className="markdown mt-10">
+      <div className="markdown mt-7">
         <MDXRemote
           source={content}
           // components={{
