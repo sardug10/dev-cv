@@ -114,11 +114,34 @@ export const RESUME_DATA = {
       techStack: ["Node.js", "Multer", "File upload"],
       slug: slugify("Uploading files using Multer in a Node.js application"),
       description:
-        "An article giving you insights into How Node.js works behind the scenes in a very simple manner.",
+        "In this article, we will see how to use Multer to handle multipart/form-data using Node.js, Express and MongoDB.",
       link: {
-        label:
-          "https://www.geeksforgeeks.org/how-node-js-works-behind-the-scene/",
-        href: "https://www.geeksforgeeks.org/how-node-js-works-behind-the-scene/",
+        label: "",
+        href: "",
+      },
+    },
+    {
+      title: "Uploading Files using Formidable in a Node.js Application",
+      techStack: ["Node.js", "Formidable", "File upload"],
+      slug: slugify(
+        "Uploading Files using Formidable in a Node.js Application",
+      ),
+      description:
+        "In this article, we will see how to use Formidable to handle multipart/form-data using Node.js, Express, and MongoDB.",
+      link: {
+        label: "",
+        href: "",
+      },
+    },
+    {
+      title: "How does CSS works behind the scenes?",
+      techStack: ["CSS"],
+      slug: slugify("How does CSS works behind the scenes?"),
+      description:
+        "In this article we will explore what happens behind the scenes with CSS (Cascading Style Sheets). We will go over what parsing is within HTML.",
+      link: {
+        label: "",
+        href: "",
       },
     },
   ],
