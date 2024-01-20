@@ -6,13 +6,20 @@ import overnight from "overnight/themes/Overnight-Slumber.json";
 import matter from "gray-matter";
 import "./markdown.css";
 import githubLight from "shiki-themes/data/github-light.json";
+import path from "path";
 
 export default async function Article({
   params: { slug },
 }: {
   params: { slug: string };
 }) {
-  const filename = "./public/assets/" + slug + "/index.md";
+  const filename = path.join(
+    process.cwd(),
+    "public",
+    "assets",
+    slug,
+    "index.md",
+  );
   const file = await readFile(filename, "utf8");
   // let postComponents = {};
   // try {
