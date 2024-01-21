@@ -7,7 +7,7 @@ export const RESUME_DATA = {
   location: "Bangalore, India",
   locationLink: "https://www.google.com/maps/place/Bengaluru",
   about:
-    "Full Stack Engineer focused on building products with extra attention to detail",
+    "Full Stack Developer crafting high-impact products with keen attention to detail.",
   summary:
     "Full Stack Software Engineer with a passion for creating innovative solutions. Experienced in building scalable and efficient web applications using a diverse tech stack including Python, JavaScript, React, and Node.js. Skilled in optimizing backend processes, enhancing user experiences, and delivering impactful results. Eager to contribute expertise to dynamic projects and collaborate with like-minded professionals.",
   avatarUrl: "https://avatars.githubusercontent.com/u/52778617?v=4",
