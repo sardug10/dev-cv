@@ -7,6 +7,17 @@ import matter from "gray-matter";
 import "./markdown.css";
 import githubLight from "shiki-themes/data/github-light.json";
 import path from "path";
+import { RESUME_DATA } from "@/data/resume-data";
+
+export async function generateStaticParams() {
+  const articlesSlugs = RESUME_DATA.articles
+    .map((article) => article.slug)
+    .filter((slug) => slug != "");
+
+  return articlesSlugs.map((articleSlug) => ({
+    slug: articleSlug,
+  }));
+}
 
 export default async function Article({
   params: { slug },
@@ -21,14 +32,7 @@ export default async function Article({
     "index.md",
   );
   const file = await readFile(filename, "utf8");
-  // let postComponents = {};
-  // try {
-  //   postComponents = await import("./public/" + slug + "/components.js");
-  // } catch (e) {
-  //   if (!e) {
-  //     throw e;
-  //   }
-  // }
+
   const { content, data } = matter(file);
   return (
     <article>
@@ -45,10 +49,6 @@ export default async function Article({
       <div className="markdown mt-7">
         <MDXRemote
           source={content}
-          // components={{
-          //   a: Link,
-          //   ...postComponents,
-          // }}
           options={{
             mdxOptions: {
               useDynamicImport: true,
