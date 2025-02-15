@@ -76,6 +76,17 @@ export const RESUME_DATA = {
   ],
   articles: [
     {
+      title: "Building Your Own Git from Scratch in Go",
+      techStack: ["Git Internals", "Go Programming"],
+      slug: "",
+      description:
+        "The article 'Building Your Own Git from Scratch in Go' provides a comprehensive guide to understanding and implementing the core functionalities of Git using the Go programming language. It delves into the internal mechanisms of Git, such as creating repositories, reading & writing blob objects, offering readers both theoretical insights and practical coding examples.",
+      link: {
+        label: "https://medium.com/",
+        href: "https://medium.com/@duggal.sarthak12/building-your-own-git-from-scratch-in-go-01166fcb18ad",
+      },
+    },
+    {
       title: "How to Implement Logging with Pino-logger",
       techStack: ["Node.js", "Logging"],
       slug: "",
