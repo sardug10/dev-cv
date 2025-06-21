@@ -34,10 +34,11 @@
 
 .markdown :not(pre)>code {
     border-radius: 10px;
-    background: var(--inlineCode-bg);
-    color: var(--inlineCode-text);
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
     padding: 0.15em 0.2em 0.05em;
     white-space: normal;
+    border: 1px solid hsl(var(--border));
 }
 
 .markdown pre {
@@ -54,17 +55,17 @@
 
 .markdown pre code {
     width: auto;
-    border: 1px solid #d1d5db;
+    border: 1px solid hsl(var(--border));
     border-radius: 5px;
     padding: 1em;
     overflow: auto;
-    background-color: #f8f8f8;
+    background-color: hsl(var(--muted));
 }
 
 .markdown blockquote {
     @apply relative -left-2 -ml-4 mb-8 pl-4;
     font-style: italic;
-    border-left: 3px solid hsla(0, 0%, 0%, 0.9);
+    border-left: 3px solid hsl(var(--border));
     border-left-color: inherit;
     opacity: 0.8;
 }
@@ -105,14 +106,15 @@
     margin-left: -16px;
     padding-left: 12px;
     border-left: 4px solid #ffa7c4;
-    background-color: #022a4b;
+    background-color: hsl(var(--muted));
     display: block;
     padding-right: 1em;
 }
+
 .markdown blockquote {
-    border-left: 3px solid #d1d5db;
+    border-left: 3px solid hsl(var(--border));
     margin: 0;
     padding-left: 1em;
-    color: #6b7280;
+    color: hsl(var(--muted-foreground));
     font-style: italic;
 }

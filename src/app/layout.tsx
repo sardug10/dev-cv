@@ -30,7 +30,12 @@ export default function RootLayout({
         ></link>
       </head>
       <body>
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider 
+          attribute="class" 
+          defaultTheme="system" 
+          enableSystem 
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>
