@@ -8,6 +8,7 @@ import { GlobeIcon, MailIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { PublicationsCard } from "@/components/publications-card";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const metadata: Metadata = {
   title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
@@ -17,7 +18,8 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-8 md:p-12">
-      <section className="mx-auto w-full max-w-4xl space-y-8 bg-white print:space-y-6">
+      <ThemeToggle className="fixed top-4 right-4 z-50 print:hidden" />
+      <section className="mx-auto w-full max-w-4xl space-y-8 bg-background print:space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex-1 space-y-1.5">
             <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
@@ -75,10 +77,13 @@ export default function Page() {
             </div>
           </div>
 
-          <Avatar className="size-28">
-            <AvatarImage alt={RESUME_DATA.name} src={RESUME_DATA.avatarUrl} />
-            <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
-          </Avatar>
+          <div className="flex items-center gap-4">
+           
+            <Avatar className="size-28">
+              <AvatarImage alt={RESUME_DATA.name} src={RESUME_DATA.avatarUrl} />
+              <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
+            </Avatar>
+          </div>
         </div>
         <Section>
           <h2 className="text-xl font-bold">About</h2>
@@ -110,7 +115,7 @@ export default function Page() {
                         ))}
                       </span>
                     </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
+                    <div className="text-sm tabular-nums text-muted-foreground">
                       {work.start} - {work.end}
                     </div>
                   </div>
@@ -138,7 +143,7 @@ export default function Page() {
                     <h3 className="font-semibold leading-none">
                       {education.school}
                     </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
+                    <div className="text-sm tabular-nums text-muted-foreground">
                       {education.start} - {education.end}
                     </div>
                   </div>
