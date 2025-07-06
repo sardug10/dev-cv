@@ -9,6 +9,7 @@ import githubLight from "shiki-themes/data/github-light.json";
 import remarkBreaks from "remark-breaks";
 import path from "path";
 import { RESUME_DATA } from "@/data/resume-data";
+import ArticleAlert from "@/components/article-alert";
 
 export async function generateStaticParams() {
   const articlesSlugs = RESUME_DATA.articles
@@ -35,37 +36,40 @@ export default async function Article({
   const file = await readFile(filename, "utf8");
   const { content, data } = matter(file);
   return (
-    <article>
-      <h1 className="text-[40px] font-semibold leading-[57.5px]">
-        {data.title}
-      </h1>
-      <p className="mt-2 text-[13px] text-muted-foreground">
-        {new Date(data.date).toLocaleDateString("en", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })}
-      </p>
-      <div className="markdown mt-7">
-        <MDXRemote
-          source={content}
-          options={{
-            mdxOptions: {
-              useDynamicImport: true,
-              remarkPlugins: [remarkSmartpants as any, remarkBreaks as any],
-              rehypePlugins: [
-                [
-                  rehypePrettyCode as any,
-                  {
-                    theme: githubLight,
-                  },
+    <>
+      <ArticleAlert />
+      <article>
+        <h1 className="text-[40px] font-semibold leading-[57.5px]">
+          {data.title}
+        </h1>
+        <p className="mt-2 text-[13px] text-muted-foreground">
+          {new Date(data.date).toLocaleDateString("en", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
+        </p>
+        <div className="markdown mt-7">
+          <MDXRemote
+            source={content}
+            options={{
+              mdxOptions: {
+                useDynamicImport: true,
+                remarkPlugins: [remarkSmartpants as any, remarkBreaks as any],
+                rehypePlugins: [
+                  [
+                    rehypePrettyCode as any,
+                    {
+                      theme: githubLight,
+                    },
+                  ],
                 ],
-              ],
-            },
-          }}
-        />
-        <hr />
-      </div>
-    </article>
+              },
+            }}
+          />
+          <hr />
+        </div>
+      </article>
+    </>
   );
 }
