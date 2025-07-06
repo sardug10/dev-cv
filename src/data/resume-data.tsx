@@ -48,8 +48,8 @@ export const RESUME_DATA = {
       link: "https://tifin.com/",
       badges: ["Bangalore, India"],
       title: "Software Engineer ~ Full Stack",
-      start: "2021",
-      end: "2025",
+      start: "2022",
+      end: "Present",
       description: [
         "Supervised cloud migration of core microservice infrastructure from Amazon Web Services (AWS) to Google Cloud Platform (GCP), reducing system latency and decreasing infrastructure costs.",
         "Executed data migration of critical services from Firebase to the MongoDB database, improving query performance and reducing operational expenses.",
