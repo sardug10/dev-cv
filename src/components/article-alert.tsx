@@ -26,7 +26,7 @@ export default function ArticleAlert() {
           </div>
           <div className="ml-3">
             <p className="text-sm text-amber-800">
-              Some formatting issues (like code blocks in dark mode or nested lists) may appear due to my custom MDX setup. I'm working on fixing it. I suggest you to continue reading this in light mode.
+              Some formatting issues (like code blocks in dark mode or nested lists) may appear due to my custom MDX setup. I am working on fixing it. I suggest you to continue reading this in light mode.
             </p>
           </div>
           <div className="ml-auto pl-3">
