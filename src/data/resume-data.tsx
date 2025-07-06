@@ -47,29 +47,16 @@ export const RESUME_DATA = {
       company: "Tifin Fintech",
       link: "https://tifin.com/",
       badges: ["Bangalore, India"],
-      title: "Engineering Lead",
-      start: "2025",
-      end: "Present",
-      description: [
-        "Led a cross-functional team of 2 software engineers and 1 QA engineer to deliver product features, ensuring high-quality code releases and on-time project delivery",
-        "Spearheaded cloud migration of core microservice infrastructure from Amazon Web Services (AWS) to Google Cloud Platform (GCP), reducing system latency and decreasing infrastructure costs by 25%",
-        "Executed data migration of critical services from Firebase to the MongoDB database, improving query performance and reducing operational expenses",
-        "Resolved performance bottlenecks and system bugs, reducing application latency and minimising production incidents and on-call escalations"
-      ],
-    },
-    {
-      company: "Tifin Fintech",
-      link: "https://tifin.com/",
-      badges: ["Bangalore, India"],
       title: "Software Engineer ~ Full Stack",
       start: "2021",
       end: "2025",
       description: [
-        "Achieved a 15% increase in MAU by adding new features to the app, engineering and implementing new micro-services within the domain of Investment Models",
-        "Engineered and implemented asynchronous API optimisation that reduced response latency by 30% and decreased on-call incidents by 45%, enhancing system reliability",
-        "Architected and optimised database read/write operations, achieving a 90% reduction in read operations (from 100 M+ to 10M) and significantly improving system throughput and infrastructure costs",
-        "Engineered cloud infrastructure optimisation through PubSub architecture refinement and database CPU utilisation, delivering 20% cost reduction across production services",
-        "Implemented a comprehensive data flow monitoring and debugging strategy, increasing system stability by 40% and establishing incident prevention",
+        "Supervised cloud migration of core microservice infrastructure from Amazon Web Services (AWS) to Google Cloud Platform (GCP), reducing system latency and decreasing infrastructure costs.",
+        "Executed data migration of critical services from Firebase to the MongoDB database, improving query performance and reducing operational expenses.",
+        "Resolved performance bottlenecks and system bugs, reducing application latency and minimising production incidents and on-call escalations.",
+        "Achieved increase in MAU by adding new features to the app, engineering and implementing new micro-services within the domain of Investment Models.",
+        "Architected and optimised database read/write operations, achieving reduction in read operations and significantly improving system throughput and infrastructure costs.",
+        "Implemented a comprehensive data flow monitoring and debugging strategy, increasing system stability and establishing incident prevention."
       ],
     },
   ],
@@ -87,6 +74,17 @@ export const RESUME_DATA = {
     "Prisma",
   ],
   articles: [
+    {
+      title: "Understanding Git Internals: Tree & Commit",
+      techStack: ["Git Internals", "Go Programming"],
+      slug: slugify("Understanding Git Internals: Tree & Commit"),
+      description:
+        "Raw notes and code explanations on ls-tree, write-tree, and commit-tree from my ongoing Git-in-Go challenge.",
+      link: {
+        label: "",
+        href: "",
+      },
+    },
     {
       title: "Building Your Own Git from Scratch in Go",
       techStack: ["Git Internals", "Go Programming"],
