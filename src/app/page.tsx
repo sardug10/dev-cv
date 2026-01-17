@@ -181,6 +181,7 @@ export default function Page() {
                       : `/articles/${article.slug}`
                   }
                   isMyBlog={article.slug ? true : false}
+                  isLinkEnabled={article.isLinkEnabled ?? true}
                 />
               );
             })}
