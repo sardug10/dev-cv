@@ -10,6 +10,7 @@ import remarkBreaks from "remark-breaks";
 import path from "path";
 import { RESUME_DATA } from "@/data/resume-data";
 import ArticleAlert from "@/components/article-alert";
+import type { Metadata } from "next";
 
 export async function generateStaticParams() {
   const articlesSlugs = RESUME_DATA.articles
@@ -19,6 +20,66 @@ export async function generateStaticParams() {
   return articlesSlugs.map((articleSlug) => ({
     slug: articleSlug,
   }));
+}
+
+export async function generateMetadata({
+  params: { slug },
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  try {
+    const filename = path.join(
+      process.cwd(),
+      "public",
+      "assets",
+      slug,
+      "index.md",
+    );
+    const file = await readFile(filename, "utf8");
+    const { data } = matter(file);
+
+    // Find the article in RESUME_DATA to get additional info
+    const article = RESUME_DATA.articles.find((a) => a.slug === slug);
+    
+    const title = data.title || article?.title || "Article";
+    const description = data.description || article?.description || "Read this article on my blog";
+    const url = `https://sarthik-dev.vercel.app/articles/${slug}`;
+    
+    return {
+      title: title,
+      description: description,
+      authors: [{ name: RESUME_DATA.name }],
+      openGraph: {
+        title: title,
+        description: description,
+        url: url,
+        siteName: `${RESUME_DATA.name}'s Blog`,
+        type: "article",
+        publishedTime: data.date,
+        authors: [RESUME_DATA.name],
+        images: [
+          {
+            url: data.image || RESUME_DATA.avatarUrl,
+            width: 1200,
+            height: 630,
+            alt: title,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: title,
+        description: description,
+        creator: "@SarthakDuggal",
+        images: [data.image || RESUME_DATA.avatarUrl],
+      },
+    };
+  } catch (error) {
+    return {
+      title: "Article",
+      description: "Read this article",
+    };
+  }
 }
 
 export default async function Article({
