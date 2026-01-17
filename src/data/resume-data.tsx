@@ -75,6 +75,18 @@ export const RESUME_DATA = {
   ],
   articles: [
     {
+      title: "Reliable, Scalable and Maintainable Applications",
+      techStack: ["Design Patterns"],
+      slug: "",
+      description:
+        "Coming Soon. Blog post from my learnings on Reading Designing Data Intensive Applications.",
+      link: {
+        label: "",
+        href: "",
+      },
+      isLinkEnabled: false,
+    },
+    {
       title: "Understanding Git Internals: Tree & Commit",
       techStack: ["Git Internals", "Go Programming"],
       slug: slugify("Understanding Git Internals: Tree & Commit"),
@@ -84,6 +96,7 @@ export const RESUME_DATA = {
         label: "",
         href: "",
       },
+      isLinkEnabled: true,
     },
     {
       title: "Building Your Own Git from Scratch in Go",
@@ -95,6 +108,7 @@ export const RESUME_DATA = {
         label: "https://medium.com/",
         href: "https://medium.com/@duggal.sarthak12/building-your-own-git-from-scratch-in-go-01166fcb18ad",
       },
+      isLinkEnabled: true,
     },
     {
       title: "How to Implement Logging with Pino-logger",
@@ -106,6 +120,7 @@ export const RESUME_DATA = {
         label: "https://css-tricks.com/",
         href: "https://css-tricks.com/how-to-implement-logging-in-a-node-js-application-with-pino-logger/",
       },
+      isLinkEnabled: true,
     },
     {
       title: "Build a custom sticky navbar with CSS",
@@ -117,6 +132,7 @@ export const RESUME_DATA = {
         label: "https://blog.logrocket.com/",
         href: "https://blog.logrocket.com/build-custom-sticky-navbar-css/",
       },
+      isLinkEnabled: true,
     },
     {
       title: "How Node.js works behind the scenes?",
@@ -129,6 +145,7 @@ export const RESUME_DATA = {
           "https://www.geeksforgeeks.org/how-node-js-works-behind-the-scene/",
         href: "https://www.geeksforgeeks.org/how-node-js-works-behind-the-scene/",
       },
+      isLinkEnabled: true,
     },
     {
       title: "Uploading files using Multer in a Node.js application",
@@ -140,6 +157,7 @@ export const RESUME_DATA = {
         label: "",
         href: "",
       },
+      isLinkEnabled: true,
     },
     {
       title: "Uploading Files using Formidable in a Node.js Application",
@@ -153,6 +171,7 @@ export const RESUME_DATA = {
         label: "",
         href: "",
       },
+      isLinkEnabled: true,
     },
     {
       title: "How does CSS works behind the scenes?",
@@ -164,6 +183,7 @@ export const RESUME_DATA = {
         label: "",
         href: "",
       },
+      isLinkEnabled: true,
     },
   ],
 } as const;

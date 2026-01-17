@@ -13,6 +13,7 @@ interface Props {
   tags: readonly string[];
   link?: string;
   isMyBlog: boolean;
+  isLinkEnabled: boolean;
 }
 
 export function PublicationsCard({
@@ -21,13 +22,14 @@ export function PublicationsCard({
   tags,
   link,
   isMyBlog,
+  isLinkEnabled,
 }: Props) {
   return (
     <Card className="flex flex-col overflow-hidden border border-muted p-3">
       <CardHeader className="">
         <div className="space-y-1">
           <CardTitle className="text-base">
-            {link ? (
+            {isLinkEnabled && link ? (
               <a
                 href={link}
                 target={isMyBlog ? "_self" : "_blank"}
@@ -41,7 +43,7 @@ export function PublicationsCard({
             )}
           </CardTitle>
           <div className="hidden font-mono text-xs underline print:visible">
-            {link?.replace("https://", "").replace("www.", "").replace("/", "")}
+            {isLinkEnabled && link ? link?.replace("https://", "").replace("www.", "").replace("/", "") : ""}
           </div>
           <CardDescription className="font-mono text-xs">
             {description}
