@@ -14,6 +14,7 @@ interface Props {
   tags: readonly string[];
   link?: string;
   isMyBlog: boolean;
+  isLinkEnabled: boolean;
 }
 
 export function PublicationsCard({
@@ -22,6 +23,7 @@ export function PublicationsCard({
   tags,
   link,
   isMyBlog,
+  isLinkEnabled,
 }: Props) {
   return (
     <Card
