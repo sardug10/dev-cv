@@ -20,6 +20,7 @@ import {
   resolveArticleDescription,
 } from "@/lib/article-markdown";
 import { extractTocFromMarkdown } from "@/lib/article-toc";
+import { absoluteFromSite } from "@/lib/site";
 import "./markdown.css";
 
 export async function generateStaticParams() {
@@ -51,25 +52,27 @@ export async function generateMetadata({
   const published = data.date ? new Date(data.date) : undefined;
   const hasValidDate = published && !Number.isNaN(published.getTime());
   const socialPath = data.ogImage?.trim() || data.cover?.trim();
+  const articleUrl = absoluteFromSite(`/articles/${params.slug}`);
+  const ogImageUrl = socialPath ? absoluteFromSite(socialPath) : undefined;
 
   return {
     title: data.title,
     description,
     alternates: {
-      canonical: `/articles/${params.slug}`,
+      canonical: articleUrl,
     },
     openGraph: {
       title: data.title,
       description,
       type: "article",
-      url: `/articles/${params.slug}`,
+      url: articleUrl,
       publishedTime: hasValidDate ? published!.toISOString() : undefined,
       authors: [RESUME_DATA.name],
-      ...(socialPath
+      ...(ogImageUrl
         ? {
             images: [
               {
-                url: socialPath,
+                url: ogImageUrl,
                 alt: data.coverAlt?.trim() || data.title,
               },
             ],
@@ -80,7 +83,7 @@ export async function generateMetadata({
       title: data.title,
       description,
       card: "summary_large_image",
-      ...(socialPath ? { images: [socialPath] } : {}),
+      ...(ogImageUrl ? { images: [ogImageUrl] } : {}),
     },
   };
 }
@@ -185,6 +188,7 @@ export default async function Article({
                     priority
                     sizes="(max-width: 1024px) 100vw, min(65ch, 100vw)"
                     className="object-cover"
+                    unoptimized={!/^https?:\/\//i.test(data.cover)}
                   />
                 </div>
               ) : null}
