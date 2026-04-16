@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { cn } from "@/lib/utils";
 
 interface Props {
   title: string;
@@ -23,37 +24,47 @@ export function PublicationsCard({
   isMyBlog,
 }: Props) {
   return (
-    <Card className="flex flex-col overflow-hidden border border-muted p-3">
-      <CardHeader className="">
-        <div className="space-y-1">
-          <CardTitle className="text-base">
+    <Card
+      className={cn(
+        "group flex flex-col overflow-hidden p-6",
+        "transition-[border-color,background-color,box-shadow] duration-200 ease-out",
+        "hover:border-foreground/25 hover:bg-muted/35 hover:shadow-sm",
+        "dark:hover:bg-muted/25",
+      )}
+    >
+      <CardHeader className="p-0">
+        <div className="space-y-2">
+          <CardTitle className="font-serif text-base font-semibold leading-snug">
             {link ? (
               <a
                 href={link}
                 target={isMyBlog ? "_self" : "_blank"}
-                className="inline-flex items-center gap-1 hover:underline"
+                rel={isMyBlog ? undefined : "noreferrer"}
+                className={cn(
+                  "rounded-sm transition-colors duration-150",
+                  "underline-offset-4 decoration-foreground/25 hover:underline hover:decoration-foreground",
+                )}
               >
-                {title}{" "}
-                <span className="size-1 rounded-full bg-green-500"></span>
+                {title}
               </a>
             ) : (
               title
             )}
           </CardTitle>
-          <div className="hidden font-mono text-xs underline print:visible">
+          <div className="hidden font-serif text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
-          <CardDescription className="font-mono text-xs">
+          <CardDescription className="font-serif text-xs leading-relaxed">
             {description}
           </CardDescription>
         </div>
       </CardHeader>
-      <CardContent className="mt-auto flex">
-        <div className="mt-2 flex flex-wrap gap-1">
+      <CardContent className="mt-auto flex p-0 pt-4">
+        <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
             <Badge
-              className="px-1 py-0 text-[10px]"
-              variant="secondary"
+              className="font-normal normal-case tracking-normal"
+              variant="outline"
               key={tag}
             >
               {tag}

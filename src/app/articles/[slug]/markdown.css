@@ -1,120 +1,337 @@
 .markdown {
-    line-height: 20px;
-    --path: none;
-    --radius-top: 12px;
-    --radius-bottom: 12px;
-    --padding-top: 1rem;
-    --padding-bottom: 1rem;
-    font-family: monospace;
+  --path: none;
+  --radius-top: 0;
+  --radius-bottom: 0;
+  --padding-top: 1rem;
+  --padding-bottom: 1rem;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: hsl(var(--foreground));
 }
 
 .markdown p {
-    @apply pb-2;
+  @apply pb-4;
 }
 
 .markdown a {
-    @apply border-b-[1px] border-[--link] text-[--link];
+  @apply border-b border-foreground/40 text-foreground transition-colors hover:border-foreground;
+}
+
+.article-end-rule {
+  @apply mt-12 border-0 border-t border-border;
 }
 
 .markdown hr {
-    @apply pt-4 opacity-60 dark:opacity-10;
+  @apply mt-10 border-0 border-t border-border pt-6;
 }
 
 .markdown h2 {
-    @apply mt-2 pb-4 text-3xl font-bold;
+  @apply mt-8 font-sans text-xs font-bold uppercase tracking-[0.22em] text-foreground;
+  padding-bottom: 0.65rem;
 }
 
 .markdown h3 {
-    @apply mt-2 pb-4 text-2xl font-bold;
+  @apply mt-6 font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground;
+  padding-bottom: 0.45rem;
 }
 
 .markdown h4 {
-    @apply mt-2 pb-4 text-xl font-bold;
+  @apply mt-5 font-serif text-base font-semibold text-foreground;
+  padding-bottom: 0.3rem;
 }
 
-.markdown :not(pre)>code {
-    border-radius: 10px;
-    background: hsl(var(--secondary));
-    color: hsl(var(--secondary-foreground));
-    padding: 0.15em 0.2em 0.05em;
-    white-space: normal;
-    border: 1px solid hsl(var(--border));
+.markdown :not(pre) > code {
+  border-radius: 0.125rem;
+  background: hsl(var(--muted));
+  color: hsl(var(--foreground));
+  padding: 0.12em 0.35em 0.08em;
+  white-space: normal;
+  border: 1px solid hsl(var(--border));
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.9em;
 }
 
+/* rehype-pretty-code: figure shell + toolbar (language + copy) */
+.markdown figure[data-rehype-pretty-code-figure] {
+  margin: 0 0 1.25rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  background: #f4f6f8;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+
+.dark .markdown figure[data-rehype-pretty-code-figure] {
+  border-color: hsl(var(--border));
+  background: hsl(var(--muted));
+  box-shadow: none;
+}
+
+.markdown figure[data-rehype-pretty-code-figure] .code-block-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.45rem 0.75rem 0.5rem 0.85rem;
+  border-bottom: 1px solid hsl(var(--border));
+  background: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.dark .markdown figure[data-rehype-pretty-code-figure] .code-block-toolbar {
+  border-bottom-color: hsl(var(--border));
+  background: hsl(var(--muted));
+}
+
+.markdown .code-block-lang {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: hsl(var(--muted-foreground));
+}
+
+.markdown .code-block-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.45rem;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.markdown .code-block-copy:hover {
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.dark .markdown .code-block-copy:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.markdown .code-block-copy svg {
+  flex-shrink: 0;
+  opacity: 0.88;
+}
+
+.markdown .code-block-copy--done {
+  color: hsl(var(--foreground));
+}
+
+.markdown .code-block-copy:focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+.markdown figure[data-rehype-pretty-code-figure] > pre {
+  margin: 0;
+  overflow-x: auto;
+  border: none;
+  border-radius: 0;
+  padding: 1rem 1.15rem 1.2rem;
+  background: #f8f9fb !important;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  /* Slightly under body (1rem): mono faces read larger at the same px */
+  font-size: 0.8rem;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark .markdown figure[data-rehype-pretty-code-figure] > pre {
+  background: hsl(var(--muted)) !important;
+}
+
+/*
+ * Dual-theme Shiki: token spans use `--shiki-light` / `--shiki-dark` (no literal `color:`).
+ * Note: rehype-pretty-code strips the `shiki` class from `<pre>`, so do not rely on `.shiki`.
+ */
+html:not(.dark) .markdown figure[data-rehype-pretty-code-figure] pre span[style*="--shiki-light"] {
+  color: var(--shiki-light) !important;
+}
+
+html.dark .markdown figure[data-rehype-pretty-code-figure] pre span[style*="--shiki-dark"] {
+  color: var(--shiki-dark) !important;
+}
+
+.markdown figure[data-rehype-pretty-code-figure] > pre code {
+  width: max-content;
+  min-width: 100%;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  overflow: visible;
+  background: transparent !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit;
+  margin-bottom: 0;
+  /* Shiki uses `display: grid` on `code`; row-gap adds air between logical lines */
+  row-gap: 0.28rem;
+}
+
+/* Base block pre (overridden below for pretty-code figures) */
 .markdown pre {
-    @apply -mx-4 mb-2 overflow-y-auto p-4 text-sm;
-    clip-path: var(--path);
-    font-size: smaller;
-    border-top-right-radius: var(--radius-top);
-    border-top-left-radius: var(--radius-top);
-    border-bottom-right-radius: var(--radius-bottom);
-    border-bottom-left-radius: var(--radius-bottom);
-    padding-top: var(--padding-top);
-    padding-bottom: var(--padding-bottom);
+  @apply mb-5 overflow-x-auto rounded-md border border-border bg-muted p-3;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.8rem;
+  line-height: 1.68;
 }
 
 .markdown pre code {
-    width: auto;
-    border: 1px solid hsl(var(--border));
-    border-radius: 5px;
-    padding: 1em;
-    overflow: auto;
-    background-color: hsl(var(--muted));
+  width: auto;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  background-color: transparent;
+  font-size: inherit;
 }
 
 .markdown blockquote {
-    @apply relative -left-2 -ml-4 mb-8 pl-4;
-    font-style: italic;
-    border-left: 3px solid hsl(var(--border));
-    border-left-color: inherit;
-    opacity: 0.8;
+  margin: 0 0 1.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid hsl(var(--border));
+  color: hsl(var(--muted-foreground));
+  font-style: italic;
 }
 
 .markdown blockquote p {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .markdown p img {
-    margin: 2rem 0;
+  margin: 2rem 0;
 }
 
 .markdown ul {
-    list-style-type: disc;
-    margin-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    margin-bottom: 1rem;
-    list-style-position: outside;
-    list-style-image: none;
-    list-style: disc;
+  list-style-type: disc;
+  margin: 0 0 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.markdown ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.25rem;
 }
 
 .markdown li {
-    list-style-type: decimal;
-        margin-bottom: calc(1rem / 2);
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.markdown li::marker {
+  color: hsl(var(--muted-foreground));
 }
 
 .markdown img {
-    @apply mb-8;
-    max-width: 100%;
+  @apply mb-8 max-w-full border border-border;
 }
 
 .markdown pre [data-highlighted-line] {
-    margin-left: -16px;
-    padding-left: 12px;
-    border-left: 4px solid #ffa7c4;
-    background-color: hsl(var(--muted));
-    display: block;
-    padding-right: 1em;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  padding-left: 0.6rem;
+  border-left: 3px solid hsl(var(--foreground));
+  background-color: rgba(0, 0, 0, 0.05);
+  display: block;
+  padding-right: 0.75rem;
 }
 
-.markdown blockquote {
-    border-left: 3px solid hsl(var(--border));
-    margin: 0;
-    padding-left: 1em;
-    color: hsl(var(--muted-foreground));
-    font-style: italic;
+.markdown figure[data-rehype-pretty-code-figure] > pre [data-highlighted-line] {
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding-left: calc(1rem - 3px);
+  padding-right: 1rem;
+}
+
+.dark .markdown pre [data-highlighted-line] {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.dark .markdown figure[data-rehype-pretty-code-figure] > pre [data-highlighted-line] {
+  border-left-color: hsl(var(--foreground));
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+/* ─── Article layout: comfortable measure for prose, wider lane for code ─── */
+.markdown.article-markdown {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+/* Article headings: stronger scale — serif section titles + caps run-in labels */
+.markdown.article-markdown h2 {
+  @apply mt-12 mb-5 border-b border-border/80 pb-3.5 font-serif text-2xl font-semibold normal-case leading-[1.2] tracking-tight text-foreground sm:text-[1.65rem] md:mt-14 md:mb-7 md:pb-4 md:text-3xl md:leading-[1.15];
+}
+
+.markdown.article-markdown h3 {
+  @apply mt-10 mb-4 border-l-[3px] border-foreground/20 pl-4 font-sans text-base font-extrabold uppercase leading-snug tracking-[0.22em] text-foreground md:mt-11 md:mb-6 md:text-lg md:tracking-[0.2em];
+  padding-bottom: 0.55rem;
+}
+
+/* Anchor targets clear the fixed article header (TOC scroll-spy + hash jumps) */
+.markdown.article-markdown h2[id],
+.markdown.article-markdown h3[id] {
+  scroll-margin-top: calc(3.5rem + env(safe-area-inset-top, 0px));
+}
+
+.markdown.article-markdown h4 {
+  @apply mt-7 mb-4 font-sans text-xl font-semibold leading-snug tracking-tight text-foreground md:mt-8 md:mb-5 md:text-2xl;
+  padding-bottom: 0.4rem;
+}
+
+.markdown.article-markdown h5,
+.markdown.article-markdown h6 {
+  @apply mt-6 mb-3 font-sans text-lg font-semibold tracking-tight text-foreground md:mb-4 md:text-xl;
+  padding-bottom: 0.3rem;
+}
+
+.markdown.article-markdown > p,
+.markdown.article-markdown > h2,
+.markdown.article-markdown > h3,
+.markdown.article-markdown > h4,
+.markdown.article-markdown > h5,
+.markdown.article-markdown > h6,
+.markdown.article-markdown > ul,
+.markdown.article-markdown > ol,
+.markdown.article-markdown > blockquote,
+.markdown.article-markdown > pre {
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.markdown.article-markdown > figure[data-rehype-pretty-code-figure] {
+  width: 100%;
+  max-width: min(100%, 60rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.markdown.article-markdown > hr.article-end-rule {
+  max-width: min(100%, 60rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.markdown.article-markdown > table {
+  display: block;
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
 }
