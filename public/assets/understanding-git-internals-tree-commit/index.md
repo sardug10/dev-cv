@@ -1,6 +1,13 @@
 ---
 title: 'Understanding Trees & Commits in git'
 date: '2025-06-06'
+description: 'Raw notes on ls-tree, write-tree, and commit-tree while working through a build-your-own-Git challenge in Go.'
+cover: '/assets/understanding-git-internals-tree-commit/hero.jpg'
+coverAlt: 'Anime Landscape'
+tags:
+  - Git
+  - Go
+  - Internals
 ---
 
 A few months back, I wrote an article covering the initial stages of the 'Build Your Own Git' challenge from CodeCrafters — including commands like `git init`, `cat-file`, and `hash-object`. You can find the article at this link and at the home page as well.

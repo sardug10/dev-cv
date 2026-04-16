@@ -1,6 +1,9 @@
 ---
 title: 'How does CSS works behind the scenes?'
 date: '2020-12-07'
+description: 'What parsing, the DOM and CSSOM, render trees, and specificity mean when the browser loads your page.'
+cover: '/assets/how-does-css-works-behind-the-scenes/hero.jpg'
+coverAlt: 'Flowchart showing how HTML is parsed into the DOM'
 ---
 
 Parsing means taking the HTML code and then extracting valuable information from it. This includes information like the title of the page, header links, and the body content.

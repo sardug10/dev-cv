@@ -1,6 +1,13 @@
 ---
 title: 'Uploading Files using Formidable in a Node.js Application'
 date: '2021-06-20'
+description: 'Handle multipart/form-data with Formidable in Node.js and Express, save uploads on the server, and connect the flow to MongoDB—complementing the earlier Multer walkthrough where topics overlap.'
+cover: '/assets/uploading-files-using-formidable-in-a-nodejs-application/hero.jpg'
+coverAlt: 'Editor view of the Node.js app file used in the Formidable upload tutorial'
+tags:
+  - Node.js
+  - Formidable
+  - File upload
 ---
 
 Whenever we submit a form on the client-side of any website, all the form data goes to the server-side. Usually, form-data gets encoded before we submit it to the server. We can do this by specifying the enctype attribute in the `<form>` tag in HTML. 

@@ -1,6 +1,13 @@
 ---
 title: 'Uploading Files Using Multer in a Node.js Application'
 date: '2021-01-18'
+description: 'Use Multer with Node.js and Express to accept multipart/form-data, persist uploads, and store metadata in MongoDB—from HTML forms through API routes and the database.'
+cover: '/assets/uploading-files-using-multer-in-a-nodejs-application/hero.jpg'
+coverAlt: 'Editor view of the Node.js app used in the Multer file-upload tutorial'
+tags:
+  - Node.js
+  - Multer
+  - File upload
 ---
 
 Whenever we submit a form on the client-side of any website, all the form data goes to the server-side. Usually, form-data gets encoded before we submit it to the server. We can do this by specifying the enctype attribute in the `<form>` tag in HTML. If we don't specify it, form-data gets encoded with the default type.

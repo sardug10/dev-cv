@@ -12,6 +12,8 @@ export const RESUME_DATA = {
     "Full Stack Software Engineer with a passion for creating innovative solutions. Experienced in building scalable and efficient web applications using a diverse tech stack including Python, JavaScript, React, and Node.js. Skilled in optimizing backend processes, enhancing user experiences, and delivering impactful results. Eager to contribute expertise to dynamic projects and collaborate with like-minded professionals.",
   avatarUrl: "https://avatars.githubusercontent.com/u/52778617?v=4",
   personalWebsiteUrl: "https://sardug10.github.io/personal-portfolio/",
+  /** Public source for this portfolio site (colophon / footer). */
+  portfolioRepoUrl: "https://github.com/sardug10/dev-cv",
   contact: {
     email: "duggal.sarthak12@gmail.com",
     tel: "+48530213401",
@@ -45,6 +47,8 @@ export const RESUME_DATA = {
   work: [
     {
       company: "Tifin Fintech",
+      /** When true, the company name is visually blurred on the site (e.g. blog screenshots). */
+      blurCompany: true,
       link: "https://tifin.com/",
       badges: ["Bangalore, India"],
       title: "Software Engineer ~ Full Stack",

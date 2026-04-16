@@ -1,46 +1,50 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
 import React from "react";
+import { cn } from "@/lib/utils";
+import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Sarthak Duggal - Full Stack Developer",
-    template: "%s | Sarthak Duggal",
+    default: "Sarthak Duggal",
+    template: "%s · Sarthak Duggal",
   },
-  description: "Full Stack Developer crafting high-impact products with keen attention to detail. Experienced in building scalable web applications.",
+  description: "Full stack engineer — portfolio and writing.",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://sarthik-dev.vercel.app",
     siteName: "Sarthak Duggal",
-    title: "Sarthak Duggal - Full Stack Developer",
-    description: "Full Stack Developer crafting high-impact products with keen attention to detail.",
-    images: [
-      {
-        url: "https://avatars.githubusercontent.com/u/52778617?v=4",
-        width: 1200,
-        height: 630,
-        alt: "Sarthak Duggal",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sarthak Duggal - Full Stack Developer",
-    description: "Full Stack Developer crafting high-impact products with keen attention to detail.",
     creator: "@SarthakDuggal",
-    images: ["https://avatars.githubusercontent.com/u/52778617?v=4"],
   },
-  metadataBase: new URL("https://sarthik-dev.vercel.app"),
 };
 
-const inter = Inter({
+const sans = IBM_Plex_Sans({
   subsets: ["latin"],
+  variable: "--font-sans",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const serif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+  weight: ["400", "500", "600"],
 });
 
 export default function RootLayout({
@@ -49,24 +53,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className}>
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark.min.css"
-        ></link>
-      </head>
+    <html
+      lang="en"
+      className={cn(sans.variable, serif.variable, mono.variable)}
+      suppressHydrationWarning
+    >
       <body>
-        <ThemeProvider 
-          attribute="class" 
-          defaultTheme="system" 
-          enableSystem 
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
           disableTransitionOnChange
         >
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
-      <Analytics />
     </html>
   );
 }
