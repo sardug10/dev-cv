@@ -59,7 +59,7 @@ export default function Articles({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <section className="w-full space-y-8 bg-background print:space-y-6 md:space-y-10">
+      <section className="w-full space-y-8 bg-transparent print:space-y-6 md:space-y-10">
         <div>{children}</div>
         <SiteFooter />
       </section>

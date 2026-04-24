@@ -84,10 +84,30 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "sparkle-drift": {
+          "0%, 100%": {
+            transform: "translate(calc(-50% + 0px), calc(-50% + 0px)) scale(1)",
+          },
+          "25%": {
+            transform: "translate(calc(-50% + 18px), calc(-50% - 12px)) scale(1.04)",
+          },
+          "50%": {
+            transform: "translate(calc(-50% - 10px), calc(-50% + 16px)) scale(0.98)",
+          },
+          "75%": {
+            transform: "translate(calc(-50% - 16px), calc(-50% - 8px)) scale(1.02)",
+          },
+        },
+        "sparkle-twinkle": {
+          "0%, 100%": { opacity: "0.2" },
+          "50%": { opacity: "0.7" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "sparkle-drift": "sparkle-drift 48s ease-in-out infinite",
+        "sparkle-twinkle": "sparkle-twinkle 3.5s ease-in-out infinite",
       },
     },
   },
