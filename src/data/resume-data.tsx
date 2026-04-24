@@ -49,7 +49,7 @@ export const RESUME_DATA = {
       company: "Tifin Fintech",
       /** When true, the company name is visually blurred on the site (e.g. blog screenshots). */
       blurCompany: true,
-      link: "https://tifin.com/",
+      link: "",
       badges: ["Bangalore, India"],
       title: "Software Engineer ~ Full Stack",
       start: "2022",
