@@ -39,102 +39,143 @@ export default function Page() {
             "print:static print:shadow-none",
           )}
         >
-          <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-10">
-            <div className="min-w-0 flex-1 space-y-6 md:space-y-8">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <Link
-                  href="/"
-                  className="font-sans text-[11px] font-bold uppercase tracking-[0.35em] text-foreground hover:opacity-70"
-                >
-                  {RESUME_DATA.name.replace(/ /g, "\u00a0")}
-                </Link>
-                <div className="flex items-center gap-5 print:hidden">
-                  <nav
-                    className="flex items-center gap-6 font-sans text-[10px] font-semibold uppercase tracking-[0.2em]"
-                    aria-label="Primary"
-                  >
-                    <Link href="/" className="hover:underline">
-                      Home
-                    </Link>
-                    <a href="#writing" className="hover:underline">
-                      Writing
-                    </a>
-                  </nav>
-                  <ThemeToggle className="relative size-8 shrink-0" />
-                </div>
-              </div>
-
-              <div
-                className="h-px max-w-lg bg-border"
-                aria-hidden
-              />
-
-              <p
-                className={cn(
-                  "max-w-4xl text-pretty font-serif font-normal tracking-tight text-foreground",
-                  "text-[1.625rem] leading-[1.18] sm:text-3xl sm:leading-[1.16]",
-                  "md:text-[2.125rem] md:leading-[1.14] lg:text-[2.5rem] lg:leading-[1.12]",
-                )}
+          <div className="min-w-0 space-y-6 md:space-y-8">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <Link
+                href="/"
+                className="font-sans text-[11px] font-bold uppercase tracking-[0.35em] text-foreground hover:opacity-70"
               >
-                {RESUME_DATA.about}
-              </p>
-
-              <div
-                className="h-px max-w-md bg-foreground/15"
-                aria-hidden
-              />
-
-              <div className="space-y-3">
-                <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  <a
-                    className="hover:underline"
-                    href={RESUME_DATA.locationLink}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {RESUME_DATA.location}
+                {RESUME_DATA.name.replace(/ /g, "\u00a0")}
+              </Link>
+              <div className="flex items-center gap-3 sm:gap-4 print:hidden">
+                <nav
+                  className="flex items-center gap-6 font-sans text-[10px] font-semibold uppercase tracking-[0.2em]"
+                  aria-label="Primary"
+                >
+                  <Link href="/" className="hover:underline">
+                    Home
+                  </Link>
+                  <a href="#writing" className="hover:underline">
+                    Writing
                   </a>
-                </p>
-                <div className="flex flex-wrap gap-x-6 gap-y-2 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] print:hidden">
-                  {RESUME_DATA.contact.email ? (
-                    <a
-                      className="border-b border-transparent hover:border-foreground"
-                      href={`mailto:${RESUME_DATA.contact.email}`}
-                    >
-                      Email
-                    </a>
-                  ) : null}
-                  {RESUME_DATA.contact.social.map((social) => (
-                    <a
-                      key={social.name}
-                      className="border-b border-transparent hover:border-foreground"
-                      href={social.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {social.name}
-                    </a>
-                  ))}
-                </div>
-              </div>
-              <div className="hidden flex-col gap-1 font-serif text-xs text-foreground print:flex">
-                {RESUME_DATA.contact.email ? (
-                  <a href={`mailto:${RESUME_DATA.contact.email}`}>
-                    <span className="underline">{RESUME_DATA.contact.email}</span>
-                  </a>
-                ) : null}
-                {RESUME_DATA.contact.tel ? (
-                  <a href={`tel:${RESUME_DATA.contact.tel}`}>
-                    <span className="underline">{RESUME_DATA.contact.tel}</span>
-                  </a>
-                ) : null}
+                </nav>
+                <span
+                  className="hidden h-4 w-px shrink-0 bg-border/60 sm:block"
+                  aria-hidden
+                />
+                <ThemeToggle className="relative size-8 shrink-0" />
+                <Avatar
+                  className={cn(
+                    "shrink-0 print:hidden md:hidden",
+                    "size-24",
+                    "border border-border/80 bg-background shadow-sm",
+                    "ring-1 ring-foreground/10 ring-offset-2 ring-offset-background",
+                  )}
+                >
+                  <AvatarImage
+                    alt={RESUME_DATA.name}
+                    className="object-top"
+                    src={RESUME_DATA.avatarUrl}
+                  />
+                  <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
+                </Avatar>
               </div>
             </div>
 
-            <Avatar className="size-24 shrink-0 rounded-none border border-border md:size-28">
-              <AvatarImage alt={RESUME_DATA.name} src={RESUME_DATA.avatarUrl} />
-              <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
-            </Avatar>
+            <div
+              className={cn(
+                "grid gap-8",
+                "md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-10",
+                "lg:gap-14",
+              )}
+            >
+              <div className="min-w-0 space-y-6 md:space-y-8">
+                <div
+                  className="h-px max-w-lg bg-border"
+                  aria-hidden
+                />
+
+                <p
+                  className={cn(
+                    "max-w-4xl text-pretty font-serif font-normal tracking-tight text-foreground",
+                    "text-[1.625rem] leading-[1.18] sm:text-3xl sm:leading-[1.16]",
+                    "md:text-[2.125rem] md:leading-[1.14] lg:text-[2.5rem] lg:leading-[1.12]",
+                  )}
+                >
+                  {RESUME_DATA.about}
+                </p>
+
+                <div
+                  className="h-px max-w-md bg-foreground/15"
+                  aria-hidden
+                />
+
+                <div className="space-y-3">
+                  <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                    <a
+                      className="hover:underline"
+                      href={RESUME_DATA.locationLink}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {RESUME_DATA.location}
+                    </a>
+                  </p>
+                  <div className="flex flex-wrap gap-x-6 gap-y-2 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] print:hidden">
+                    {RESUME_DATA.contact.email ? (
+                      <a
+                        className="border-b border-transparent hover:border-foreground"
+                        href={`mailto:${RESUME_DATA.contact.email}`}
+                      >
+                        Email
+                      </a>
+                    ) : null}
+                    {RESUME_DATA.contact.social.map((social) => (
+                      <a
+                        key={social.name}
+                        className="border-b border-transparent hover:border-foreground"
+                        href={social.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {social.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div className="hidden flex-col gap-1 font-serif text-xs text-foreground print:flex">
+                  {RESUME_DATA.contact.email ? (
+                    <a href={`mailto:${RESUME_DATA.contact.email}`}>
+                      <span className="underline">{RESUME_DATA.contact.email}</span>
+                    </a>
+                  ) : null}
+                  {RESUME_DATA.contact.tel ? (
+                    <a href={`tel:${RESUME_DATA.contact.tel}`}>
+                      <span className="underline">{RESUME_DATA.contact.tel}</span>
+                    </a>
+                  ) : null}
+                </div>
+              </div>
+
+              <Avatar
+                className={cn(
+                  "hidden shrink-0 self-start justify-self-end print:hidden",
+                  "md:block",
+                  "size-44 lg:size-56 xl:size-64",
+                  "border border-border/80 bg-background shadow-sm",
+                  "ring-1 ring-foreground/10 ring-offset-2 ring-offset-background",
+                )}
+              >
+                <AvatarImage
+                  alt={RESUME_DATA.name}
+                  className="object-top"
+                  src={RESUME_DATA.avatarUrl}
+                />
+                <AvatarFallback className="text-2xl lg:text-3xl">
+                  {RESUME_DATA.initials}
+                </AvatarFallback>
+              </Avatar>
+            </div>
           </div>
         </header>
 
