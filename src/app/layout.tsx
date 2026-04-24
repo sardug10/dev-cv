@@ -7,6 +7,7 @@ import "./globals.css";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { getSiteUrl } from "@/lib/site";
+import { SparkleBackdrop } from "@/components/sparkle-backdrop";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
@@ -59,15 +60,18 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
+        <SparkleBackdrop />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div className="relative z-10 min-h-dvh">
+            {children}
+            <Analytics />
+          </div>
         </ThemeProvider>
-        <Analytics />
       </body>
     </html>
   );

@@ -32,11 +32,11 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 export default function Page() {
   return (
     <main className="relative mx-auto w-full max-w-layout scroll-my-12 px-4 pb-10 print:p-8 sm:px-6 md:px-10 md:pb-12 lg:px-14">
-      <section className="w-full space-y-10 bg-background print:space-y-8 md:space-y-11">
+      <section className="w-full space-y-10 bg-transparent print:space-y-8 md:space-y-11">
         <header
           className={cn(
-            "sticky top-0 z-40 border-b border-border bg-background pb-12 pt-[max(0.75rem,env(safe-area-inset-top))] shadow-sm md:pb-16",
-            "print:static print:shadow-none",
+            "sticky top-0 z-40 border-b border-border/80 bg-background/85 pb-12 pt-[max(0.75rem,env(safe-area-inset-top))] shadow-sm backdrop-blur-sm md:pb-16",
+            "print:static print:bg-background print:shadow-none print:backdrop-blur-none",
           )}
         >
           <div className="min-w-0 space-y-6 md:space-y-8">
